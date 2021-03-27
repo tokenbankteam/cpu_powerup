@@ -6,6 +6,7 @@ const {TextEncoder, TextDecoder} = require("util"); // node only; native TextEnc
 
 const defaultPrivateKey = "********your PrivateKey***********";
 const accountName = 'your account name';
+const receiverAccountName = 'your account name';
 
 const signatureProvider = new JsSignatureProvider([defaultPrivateKey]);
 const rpc = new JsonRpc("https://eos.newdex.one", {fetch});
@@ -30,8 +31,7 @@ class Runner {
             textEncoder: new TextEncoder(),
         });
 
-
-        let ret = await rpc.get_account(accountName)
+        let ret = await rpc.get_account(receiverAccountName)
         let cpu_available = ret.cpu_limit.available;
         console.log(`cpu_available :  ` + cpu_available)
         if (cpu_available < 68888) {
@@ -44,7 +44,7 @@ class Runner {
                             authorization: [{actor: accountName, permission: "active",}],
                             data: {
                                 "payer": accountName,
-                                "receiver": accountName,
+                                "receiver": receiverAccountName,
                                 "days": 1,
                                 "net_frac": 0,
                                 "cpu_frac": 2000000000,
