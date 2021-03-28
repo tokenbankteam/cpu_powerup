@@ -4,9 +4,9 @@ const fetch = require("node-fetch"); // node only; not needed in browsers
 const {TextEncoder, TextDecoder} = require("util"); // node only; native TextEncoder/Decoder
 // const { TextEncoder, TextDecoder } = require('text-encoding');  // React Native, IE11, and Edge Browsers only
 
-const defaultPrivateKey = "********your PrivateKey***********";
+const defaultPrivateKey = "********your account name PrivateKey***********";
 const accountName = 'your account name';
-const receiverAccountName = 'your account name';
+const receiverAccountName = 'your receiver account name';
 
 const signatureProvider = new JsSignatureProvider([defaultPrivateKey]);
 const rpc = new JsonRpc("https://eos.newdex.one", {fetch});
@@ -58,6 +58,7 @@ class Runner {
                     expireSeconds: 30,
                 }
             );
+            console.log("powerup :  " + JSON.stringify(result));
         }
     }
 
